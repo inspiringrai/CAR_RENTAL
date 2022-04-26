@@ -8,5 +8,5 @@ import lombok.Setter;
 public class CarRequestObject {
     String model;
     long price;
-    long numberOfCars;
+    long availableCars;
 }

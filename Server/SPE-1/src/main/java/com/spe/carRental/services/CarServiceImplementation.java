@@ -13,17 +13,22 @@ public class CarServiceImplementation implements CarService{
     private CarRepository carRepository;
 
     @Override
-    public boolean addOrUpdateCar(String model, long price, long numberOfCars) {
-        Car car =  carRepository.findByModel(model);
-        if(car==null){
-            car = new Car();
-            car.setAvailableCars(numberOfCars);
-            car.setModel(model);
-            car.setPrice(price);
-            carRepository.save(car);
-            return true;
-        }
+    public boolean updateCar(Car request) {
+        Car car = carRepository.findById(request.getId());
+        if(car==null) return false;
+
+        car.setAvailableCars(request.getAvailableCars());
+        car.setPrice(request.getPrice());
+        car.setModel(request.getModel());
+        carRepository.save(car);
+        return true;
+    }
+    @Override
+    public boolean addCar(String model, long price, long numberOfCars) {
+        if(carRepository.existsByModel(model)) return false;
+        Car car = new Car();
         car.setAvailableCars(numberOfCars);
+        car.setModel(model);
         car.setPrice(price);
         carRepository.save(car);
         return true;

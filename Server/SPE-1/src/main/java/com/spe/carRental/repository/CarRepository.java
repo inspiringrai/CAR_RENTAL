@@ -7,6 +7,6 @@ import java.util.List;
 
 public interface CarRepository extends JpaRepository<Car,Long> {
     boolean existsByModel(String model);
-    Car findByModel(String model);
+    Car findById(long id);
     List<Car> findAll();
 }

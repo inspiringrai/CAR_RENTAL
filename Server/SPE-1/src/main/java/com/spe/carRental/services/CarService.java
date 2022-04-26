@@ -7,6 +7,7 @@ import java.util.List;
 
 @Service
 public interface CarService {
-    boolean addOrUpdateCar(String model, long price, long numberOfCars);
+    boolean updateCar(Car request);
+    boolean addCar(String model, long price, long numberOfCars);
     List<Car> getCars();
 }
