@@ -26,9 +26,13 @@ public class UserServiceImplementation implements UserService{
 
     @Override
     public SignInResponseObject signIn(String userid, String password){
-        User user = userRepository.getByUseridAndPassword(userid,password);
-        if(user==null) return null;
         SignInResponseObject response = new SignInResponseObject();
+        User user = userRepository.getByUseridAndPassword(userid,password);
+        if(user==null){
+            response.setId(0);
+            response.setUsertype(null);
+            return response;
+        }
         response.setId(user.getId());
         response.setUsertype(user.getUserType());
         return response;

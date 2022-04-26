@@ -13,7 +13,7 @@ public class UserController {
     @Autowired
     private UserService userService;
     @GetMapping("/signin")
-    public SignInResponseObject signIn(@RequestBody SignUpRequestObject request){
-        return userService.signIn(request.getUserId(), request.getPassword());
+    public SignInResponseObject signIn(String userId, String password){
+        return userService.signIn(userId, password);
     }
 }
