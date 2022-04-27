@@ -1,5 +1,5 @@
 import SignUp from "./signup";
-import {Routes, Route, BrowserRouter} from 'react-router-dom'
+import {Routes, Route, BrowserRouter, Navigate} from 'react-router-dom'
 import { AdminPage } from "./adminPage";
 import { CustomerPage } from "./customerPage";
 import { AgentPage } from "./agentPage";
@@ -14,6 +14,7 @@ function App() {
           <Route exact path="/admin" element={<AdminPage/>}/>
           <Route exact path="/customer" element={<CustomerPage/>}/>
           <Route exact path="/agent" element={<AgentPage/>}/>
+          <Route path="/" element={<Navigate to='signin'/>}/>
         </Routes>
       </BrowserRouter>
     </>

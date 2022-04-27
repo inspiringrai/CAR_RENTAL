@@ -27,7 +27,7 @@ public class CustomerController {
         return bookingService.getAvailableCars(fromDate, toDate, id);
     }
     @PostMapping("/makeBooking")
-    public boolean makeBooking(BookingRequest request){
+    public boolean makeBooking(@RequestBody BookingRequest request){
         return bookingService.makeBooking(request);
     }
 

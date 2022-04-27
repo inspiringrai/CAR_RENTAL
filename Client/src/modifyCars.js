@@ -87,7 +87,7 @@ export function ModifyCars(){
                     <th>{editRowNumber==null?<button onClick={()=>{onAdd()}}>Add</button>:''}</th>
                 </tr>
                 {
-                    (editRowNumber=='ADD')?
+                    (editRowNumber==='ADD')?
                     <tr>
                         <td><input value={rowDetails.model} onChange={(e)=>{editModel(e.target.value)}}/></td>
                         <td><input type="number" min="0" value={rowDetails.price} onChange={(e)=>{editPrice(e.target.value)}}/></td>
@@ -99,12 +99,12 @@ export function ModifyCars(){
             {
                 carDetails.map((carDetail,index)=>(
                     <tr key={index}>
-                        <td>{editRowNumber==index?<input value={rowDetails.model} onChange={(e)=>{editModel(e.target.value)}}/>:carDetail.model}</td>
-                        <td>{editRowNumber==index?<input type="number" min="0" value={rowDetails.price} onChange={(e)=>{editPrice(e.target.value)}}/>:carDetail.price}</td>
-                        <td>{editRowNumber==index?<input type="number" min="0" value={rowDetails.availableCars}onChange={(e)=>{editAvailableCars(e.target.value)}}/>:carDetail.availableCars}</td>
+                        <td>{editRowNumber===index?<input value={rowDetails.model} onChange={(e)=>{editModel(e.target.value)}}/>:carDetail.model}</td>
+                        <td>{editRowNumber===index?<input type="number" min="0" value={rowDetails.price} onChange={(e)=>{editPrice(e.target.value)}}/>:carDetail.price}</td>
+                        <td>{editRowNumber===index?<input type="number" min="0" value={rowDetails.availableCars}onChange={(e)=>{editAvailableCars(e.target.value)}}/>:carDetail.availableCars}</td>
                         <td>
-                            {editRowNumber==null?<button onClick={()=>{onEdit(index)}}>Edit</button>
-                            :editRowNumber==index?<><button onClick={()=>{onSubmitEdit()}}>Change</button><button onClick={()=>{setEditRowNumber(null)}}>Cancel</button></>:''}
+                            {editRowNumber===null?<button onClick={()=>{onEdit(index)}}>Edit</button>
+                            :editRowNumber===index?<><button onClick={()=>{onSubmitEdit()}}>Change</button><button onClick={()=>{setEditRowNumber(null)}}>Cancel</button></>:''}
                         </td>
                     </tr>
                 ))

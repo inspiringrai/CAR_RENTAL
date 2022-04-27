@@ -33,6 +33,12 @@ function SignUp(props){
     return(
         <>
             {
+                (window.localStorage.getItem('usertype')==='ADMIN')?<Navigate to='/admin'/>
+                :(window.localStorage.getItem('usertype')==='AGENT')?<Navigate to='/agent'/>
+                :(window.localStorage.getItem('usertype')==='CUSTOMER')?<Navigate to='/customer'/>:''
+            }
+            
+            {
                 (userType==null)?''
                 :(userType==='CUSTOMER')? <Navigate to='/customer'/>
                 :(userType==='AGENT')? <Navigate to='/agent'/>
@@ -44,6 +50,7 @@ function SignUp(props){
                 <TextField label="User Id" value={userId} onChange={(event)=>{setUserId(event.target.value)}}/>
                 <TextField label="Password" value={password} type="password" onChange={(event)=>{setPassword(event.target.value)}}/>
                 <Button onClick={()=>{props.registered?signIn():signUp()}}>Submit</Button>
+                <Button onClick={()=>{window.location.href=(props.registered?'signup':'signin')}}>{props.registered?'Sign up instead':'Go back and sign in'}</Button>
             </Card>
         </>
     )
