@@ -10,6 +10,7 @@ pipeline {
             steps{
                 dir('Client'){
                     sh 'npm install'
+                    sh 'npm start'
                 }
             }
         }
@@ -17,7 +18,7 @@ pipeline {
         stage('Build'){
             steps {
                 dir('CAR_RENTAL'){
-                    sh 'mvn install'
+                    sh 'mvn clean install'
                 }
             }
         }
