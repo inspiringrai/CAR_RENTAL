@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage("Git clone") {
             steps {
-                git url: 'https://github.com/patelparth17/CAR_RENTAL.git', branch: 'master'
+                git url: 'https://github.com/inspiringrai/CAR_RENTAL.git', branch: 'main'
             }
         }
         stage("Frontend prerequisite installations") {
