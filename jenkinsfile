@@ -28,11 +28,25 @@ pipeline {
             steps {
                 dir('Client'){
                     sh 'docker build -t patelparth17/react .'
-                    sh 'docker push patelparth17/react'
+                    withCredentials([usernamePassword( credentialsId: 'dockerid', usernameVariable: 'patelparth17', passwordVariable: 'P&Nwentupthehi11')]) {
+                            def registry_url = "registry.hub.docker.com/"
+                            bat "docker login -u $patelparth17 -p $P&Nwentupthehi11 ${registry_url}"
+                            docker.withRegistry("http://${registry_url}", "dockerid") {
+
+                                bat "docker push patelparth17/react"
+                            }
+                        }
                 }
                 dir('Server'){
                     sh 'docker build -t patelparth17/spring .'
-                    sh 'docker push patelparth17/spring'
+                    withCredentials([usernamePassword( credentialsId: 'dockerid', usernameVariable: 'patelparth17', passwordVariable: 'P&Nwentupthehi11')]) {
+                                                def registry_url = "registry.hub.docker.com/"
+                                                bat "docker login -u $patelparth17 -p $P&Nwentupthehi11 ${registry_url}"
+                                                docker.withRegistry("http://${registry_url}", "dockerid") {
+
+                                                    bat "docker push patelparth17/spring"
+                                                }
+                                            }
                 }
             }
         }
