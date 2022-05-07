@@ -1,11 +1,12 @@
 pipeline {
-
+    environment {
+                dockerHubCredential = 'dockerid'
+            }
     agent any
     stages {
         stage("Git clone") {
             steps {
-                git url: 'https://github.com/inspiringrai/CAR_RENTAL.git', branch: 'main',
-                credentialsId: 'vishal'
+                git url: 'https://github.com/inspiringrai/CAR_RENTAL.git', branch: 'main'
             }
         }
         stage("Frontend prerequisite installations") {
@@ -38,10 +39,10 @@ pipeline {
 
         stage('Pushing the built images to docker hub'){
             steps{
-                    withDockerRegistry([ credentialsId: 'dockerid', url: "" ])
+                    withDockerRegistry([ credentialsId: dockerHubCredential, url: "" ])
                     sh 'docker push patelparth17/react'
 
-                    withDockerRegistry([ credentialsId: 'dockerid', url: "" ])
+                    withDockerRegistry([ credentialsId: dockerHubCredential, url: "" ])
                     sh 'docker push patelparth17/spring'
 
             }
