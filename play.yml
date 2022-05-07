@@ -1,0 +1,23 @@
+---
+- name: Deploying the application
+  hosts: all
+  tasks:
+    - name: Starting the docker service
+      service:
+        name: docker
+        state: started
+
+    - name: Copying the docker compose file
+      become: false
+      copy:
+        src: ./docker-compose.yml
+        dest: ./
+        owner: parth
+        group: ubuntu
+        mode: 0777
+
+    - name: cleaning the docker compose workspace in the local system
+      shell: docker-compose down
+
+    - name: Starting the application
+      shell: docker-compose up
