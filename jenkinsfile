@@ -1,4 +1,5 @@
 pipeline {
+
     agent any
     stages {
         stage("Git clone") {
@@ -37,10 +38,10 @@ pipeline {
 
         stage('Pushing the built images to docker hub'){
             steps{
-                    withDockerRegistry([ credentialsId: dockerid, url: "" ])
+                    withDockerRegistry([ credentialsId: 'dockerid', url: "" ])
                     sh 'docker push patelparth17/react'
 
-                    withDockerRegistry([ credentialsId: dockerid, url: "" ])
+                    withDockerRegistry([ credentialsId: 'dockerid', url: "" ])
                     sh 'docker push patelparth17/spring'
 
             }
