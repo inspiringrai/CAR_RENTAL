@@ -13,7 +13,7 @@
         src: ./docker-compose.yml
         dest: ./
         owner: parth
-        group: ubuntu
+        group: parth
         mode: 0777
 
     - name: cleaning the docker compose workspace in the local system
