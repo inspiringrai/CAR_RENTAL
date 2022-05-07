@@ -16,7 +16,7 @@ pipeline {
 
         stage('Build'){
             steps {
-                dir('CAR_RENTAL'){
+                dir('Client'){
                     sh 'mvn clean install'
                 }
             }
