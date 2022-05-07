@@ -1,0 +1,52 @@
+pipeline {
+    agent any
+    stages {
+        stage("Git clone") {
+            steps {
+                git url: 'https://github.com/patelparth17/CAR_RENTAL.git', branch: 'master'
+            }
+        }
+        stage("Frontend prerequisite installations") {
+            steps{
+                dir('Client'){
+                    sh 'npm install'
+                }
+            }
+        }
+
+        stage('Build'){
+            steps {
+                dir('CAR_RENTAL'){
+                    sh 'mvn install'
+                }
+            }
+        }
+        stage('Building the images of front end and back end'){
+            steps {
+                dir('Client'){
+                    sh 'docker build -t patelparth17/react .'
+                }
+                dir('Server'){
+                    sh 'docker build -t patelparth17/spring .'
+                }
+            }
+        }
+
+        stage('Pushing the built images to docker hub'){
+            steps{
+                dir('Client'){
+                    sh 'docker push patelparth17/react'
+                }
+                dir('Server'){
+                    sh 'docker push patelparth17/spring'
+                }
+            }
+        }
+
+        stage('Ansible Deploy') {
+             steps {
+                  ansiblePlaybook colorized: true, disableHostKeyChecking: true, installation: 'Ansible', inventory: 'inventory', playbook: 'play.yml'
+             }
+        }
+    }
+}
