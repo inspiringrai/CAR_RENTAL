@@ -36,6 +36,7 @@ pipeline {
 
         stage('Pushing the built images to docker hub'){
             steps{
+                    sh 'docker login'
                     sh 'docker push patelparth17/react'
                     sh 'docker push patelparth17/spring'
             }
