@@ -10,7 +10,6 @@ pipeline {
             steps{
                 dir('Client'){
                     sh 'npm install'
-                    sh 'npm start'
                 }
             }
         }
