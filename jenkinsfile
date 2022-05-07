@@ -39,12 +39,13 @@ pipeline {
 
         stage('Pushing the built images to docker hub'){
             steps{
+            script{
                     withDockerRegistry([ credentialsId: dockerHubCredential, url: "" ])
                     sh 'docker push patelparth17/react'
 
                     withDockerRegistry([ credentialsId: dockerHubCredential, url: "" ])
                     sh 'docker push patelparth17/spring'
-
+            }
             }
         }
 
