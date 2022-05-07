@@ -45,12 +45,8 @@ pipeline {
         stage('Deploying the images'){
             steps{
                 script {
-                    docker.withRegistry( '', registryCredential ) {
-                        frontEndImage.push()
-                    }
-                    docker.withRegistry( '', registryCredential ) {
-                          backEndImage.push()
-                    }
+                    withDockerRegistry([ credentialsId: registryCredential, url: "" ]) {sh 'docker push $registry1'}
+                    withDockerRegistry([ credentialsId: registryCredential, url: "" ]) {sh 'docker push $registry2'}
                 }
             }
         }
