@@ -4,7 +4,7 @@ pipeline {
         stage("Git clone") {
             steps {
                 git url: 'https://github.com/inspiringrai/CAR_RENTAL.git', branch: 'main'
-                credentialsId: 'ansible'
+
             }
         }
         stage("Frontend prerequisite installations") {
