@@ -34,14 +34,10 @@ pipeline {
         stage('Building the images'){
             steps {
                 dir('Client'){
-                script{
-                    frontEndImage = docker.build registry1 + ":latest"
-                }
+                    sh 'docker build -t patelparth17/react .'
                 }
                 dir('Server'){
-                script{
-                    backEndImage = docker.build registry2 + ":latest"
-                }
+                    sh 'docker build -t patelparth17/spring .'
                 }
             }
         }
