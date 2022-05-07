@@ -16,7 +16,7 @@ pipeline {
 
         stage('Build'){
             steps {
-                dir('Client'){
+                dir('Server/SPE-1'){
                     sh 'mvn clean install'
                 }
             }
