@@ -4,7 +4,7 @@ pipeline {
         stage("Git clone") {
             steps {
                 git url: 'https://github.com/inspiringrai/CAR_RENTAL.git', branch: 'main'
-
+                credentialsId: 'vishal'
             }
         }
         stage("Frontend prerequisite installations") {
@@ -26,31 +26,25 @@ pipeline {
         }
         stage('Building the images of front end and back end'){
             steps {
-            script{
                 dir('Client'){
-                    frontEndImage = docker.build patelparth17/react + ":latest"
+                    sh 'docker build -t patelparth17/react .'
                 }
                 dir('Server'){
-                    backEndImage = docker.build patelparth17/spring + ":latest"
+                    sh 'docker build -t patelparth17/spring .'
                 }
-            }
             }
         }
 
         stage('Pushing the built images to docker hub'){
             steps{
-            script{
                 dir('Client'){
-                    docker.withRegistry( '', 'dockerid' ) {
-                    frontEndImage.push()
-                    }
+                    withDockerRegistry([ credentialsId: dockerid, url: "" ])
+                    sh 'docker push patelparth17/react'
                 }
                 dir('Server'){
-                    docker.withRegistry( '', 'dockerid' ) {
-                    backEndImage.push()
-                    }
+                    withDockerRegistry([ credentialsId: dockerid, url: "" ])
+                    sh 'docker push patelparth17/spring'
                 }
-            }
             }
         }
 
