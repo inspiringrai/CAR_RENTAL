@@ -23,22 +23,17 @@ pipeline {
                 }
             }
         }
-        stage('Building the images of front end and back end'){
+
+        stage('Building the images and pushing them to DockerHub'){
             steps {
                 dir('Client'){
                     sh 'docker build -t patelparth17/react .'
+                    sh 'docker push patelparth17/react'
                 }
                 dir('Server'){
                     sh 'docker build -t patelparth17/spring .'
-                }
-            }
-        }
-
-        stage('Pushing the built images to docker hub'){
-            steps{
-                    sh 'docker login'
-                    sh 'docker push patelparth17/react'
                     sh 'docker push patelparth17/spring'
+                }
             }
         }
 
