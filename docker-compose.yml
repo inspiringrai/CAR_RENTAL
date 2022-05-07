@@ -1,0 +1,48 @@
+version: "2.4"
+services:
+
+  mysql:
+    image: mysql
+    container_name: mysql
+    networks:
+      - my-net
+    environment:
+      - MYSQL_ROOT_PASSWORD=P&Nwentupthehi11
+      - MYSQL_DATABASE=car_rental
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=P&Nwentupthehi11
+      
+    ports:
+      - "9001:3306"
+      
+    healthcheck:
+      test: parth ping -h 127.0.0.1 -u parth --password=password
+
+    
+      
+  spring:
+    image: patelparth17/spring
+    container_name: spring
+    ports:
+      - "9000:9000"
+    networks:
+      - my-net
+    depends_on:
+      mysql:
+        condition: service_healthy
+          
+      
+  react:
+    image: patelparth17/react
+    container_name: react
+    ports:
+      - "3000:3000"
+    networks:
+      - my-net
+    depends_on:
+      - spring
+  
+
+networks:
+  my-net:
+
