@@ -15,7 +15,7 @@ services:
       - mysql_data_volume:/var/lib/mysql
 
     ports:
-      - "9001:3306"
+      - "3306:3306"
 
   react:
     image: patelparth17/react
