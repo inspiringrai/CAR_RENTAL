@@ -8,16 +8,13 @@
         state: started
 
     - name: Copying the docker compose file
-      become: false
       copy:
         src: ./docker-compose.yml
         dest: ./
-        owner: parth
-        group: parth
-        mode: 0777
 
-    - name: cleaning the docker compose workspace in the local system
-      shell: docker-compose down
+
+#    - name: cleaning the docker compose workspace in the local system
+#      shell: docker-compose down
 
     - name: Starting the application
       shell: docker-compose up -d
