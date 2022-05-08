@@ -1,8 +1,9 @@
-import { Button, Card, TextField } from "@mui/material";
+import { Button, Card, CardContent, Container, Paper, Stack, TextField } from "@mui/material";
 import { useState } from "react";
 import { createCustomerUrl, userSignInUrl } from "./urls";
 import queryString from 'query-string';
 import {Navigate} from 'react-router-dom'
+import backgroundImage from './assets/carImage.jpg';
 
 function SignUp(props){
     const [userId, setUserId] = useState('');
@@ -45,13 +46,26 @@ function SignUp(props){
                 :(userType==='ADMIN')? <Navigate to='/admin'/>
                 :''
             }
-            <Card>
-                <h1>{props.registered?'Sign In':'Sign up'}</h1>
-                <TextField label="User Id" value={userId} onChange={(event)=>{setUserId(event.target.value)}}/>
-                <TextField label="Password" value={password} type="password" onChange={(event)=>{setPassword(event.target.value)}}/>
-                <Button onClick={()=>{props.registered?signIn():signUp()}}>Submit</Button>
-                <Button onClick={()=>{window.location.href=(props.registered?'signup':'signin')}}>{props.registered?'Sign up instead':'Go back and sign in'}</Button>
-            </Card>
+
+                <div style={{height:'100%',position:'relative',display: 'flex',justifyContent: 'center', alignItems:'center'}}>
+                        <div style={{opacity:0.5,position:'absolute',width:'100%',height:'100%',backgroundImage:`url(${backgroundImage})`,backgroundSize:'cover'}}/>
+                        <Container sx={{width:600,position:'relative'}}>
+                            <Card>
+                                <CardContent>
+                                    <h1 style={{textAlign:'center'}}>{props.registered?'Sign In':'Sign up'}</h1>
+                                    
+                                    <Stack>
+                                        <TextField label="User Id" value={userId} onChange={(event)=>{setUserId(event.target.value)}}/>
+                                        <TextField label="Password" value={password} type="password" onChange={(event)=>{setPassword(event.target.value)}}/>
+                                        <div style={{textAlign:'center'}}><Button variant="contained" onClick={()=>{props.registered?signIn():signUp()}}>Submit</Button>
+                                        <Button variant="contained" onClick={()=>{window.location.href=(props.registered?'signup':'signin')}}>{props.registered?'Sign up instead':'Go back and sign in'}</Button></div>
+                                    </Stack> 
+                                </CardContent>               
+                            </Card>
+                        </Container>
+                        
+                    
+                </div>
         </>
     )
 }
