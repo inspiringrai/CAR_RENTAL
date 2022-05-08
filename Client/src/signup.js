@@ -49,21 +49,20 @@ function SignUp(props){
 
                 <div style={{height:'100%',position:'relative',display: 'flex',justifyContent: 'center', alignItems:'center'}}>
                         <div style={{opacity:0.5,position:'absolute',width:'100%',height:'100%',backgroundImage:`url(${backgroundImage})`,backgroundSize:'cover'}}/>
-                        <Container sx={{width:600,position:'relative'}}>
+                         <Container sx={{width:400,position:'relative'}}>
                             <Card>
                                 <CardContent>
                                     <h1 style={{textAlign:'center'}}>{props.registered?'Sign In':'Sign up'}</h1>
                                     
                                     <Stack>
-                                        <TextField label="User Id" value={userId} onChange={(event)=>{setUserId(event.target.value)}}/>
-                                        <TextField label="Password" value={password} type="password" onChange={(event)=>{setPassword(event.target.value)}}/>
-                                        <div style={{textAlign:'center'}}><Button variant="contained" onClick={()=>{props.registered?signIn():signUp()}}>Submit</Button>
+                                        <TextField label="User Id" value={userId} onChange={(event)=>{setUserId(event.target.value)}} style={{marginBottom: '14px',}} />
+                                        <TextField label="Password" value={password} type="password" onChange={(event)=>{setPassword(event.target.value)}} style={{marginBottom: '14px'}}/>
+                                        <div style={{textAlign:'center', display: 'flex', flexDirection: 'column'}}><Button variant="contained" onClick={()=>{props.registered?signIn():signUp()}} style={{marginBottom: '14px'}}>Submit</Button>
                                         <Button variant="contained" onClick={()=>{window.location.href=(props.registered?'signup':'signin')}}>{props.registered?'Sign up instead':'Go back and sign in'}</Button></div>
                                     </Stack> 
                                 </CardContent>               
                             </Card>
                         </Container>
-                        
                     
                 </div>
         </>
