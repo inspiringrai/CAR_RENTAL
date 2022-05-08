@@ -42,11 +42,14 @@ pipeline {
             }
         }
 
-        stage('Deploying the images'){
+        stage('Pushing the images to DockerHub'){
             steps{
                 script {
-                    withDockerRegistry([ credentialsId: registryCredential, url: "" ]) {sh 'docker push $registry1'}
-                    withDockerRegistry([ credentialsId: registryCredential, url: "" ]) {sh 'docker push $registry2'}
+                    withDockerRegistry([ credentialsId: registryCredential, url: "" ])
+                    {sh 'docker push $registry1'}
+
+                    withDockerRegistry([ credentialsId: registryCredential, url: "" ])
+                    {sh 'docker push $registry2'}
                 }
             }
         }
