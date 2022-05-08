@@ -1,5 +1,5 @@
 FROM openjdk:11
-COPY ./target/SPE-1-2.6.7.jar.original ./
+COPY ./target/SPE-1-2.6.7.jar ./
 WORKDIR ./
 EXPOSE 9000
-CMD ["java", "-jar", "SPE-1-2.6.7.jar.original"]
+CMD ["java", "-jar", "SPE-1-2.6.7.jar"]
