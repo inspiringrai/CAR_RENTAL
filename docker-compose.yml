@@ -9,13 +9,13 @@ services:
     environment:
       - MYSQL_ROOT_PASSWORD=P&Nwentupthehi11
       - MYSQL_DATABASE=car_rental
-      - MYSQL_USER=parth
+      - MYSQL_USER=root
       - MYSQL_PASSWORD=P&Nwentupthehi11
     volumes:
       - mysql_data_volume:/var/lib/mysql
 
-    ports:
-      - "9001:3306"
+#    ports:
+#      - "9001:3306"
 
   react:
     image: patelparth17/react
